@@ -1,13 +1,14 @@
 package com.example.springrest.service;
 
+import com.example.springrest.dto.UserDto;
 import com.example.springrest.entity.User;
 
 import java.util.List;
 
 public interface UserService {
-    User createUser(User user);
+    UserDto createUser(UserDto user);
 
-    User getUserById(Long userId);
+    UserDto getUserById(Long userId);
     List<User> getAllUsers();
 
     User updateUser(User user);
