@@ -3,6 +3,9 @@ package com.example.springrest.controller;
 import com.example.springrest.dto.UserDto;
 import com.example.springrest.entity.User;
 import com.example.springrest.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(
+        name = "CRUD REST APIs for user respource",
+        description = "crud rest apis"
+)
 @AllArgsConstructor
 @RequestMapping("api/users")
 public class UserController {
@@ -20,6 +27,14 @@ public class UserController {
 
     // create user REST API
     @PostMapping
+    @Operation(
+            summary = "create user REST API",
+            description = "create rest api to save in db"
+    )
+    @ApiResponse(
+            responseCode = "201",
+            description = "http status 201 created"
+    )
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto user) {
         UserDto savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
